@@ -358,6 +358,8 @@ See also [`checkindex`](@ref).
 
 # Examples
 ```jldoctest
+julia> using Random
+
 julia> A = rand(3, 3);
 
 julia> checkbounds(Bool, A, 2)

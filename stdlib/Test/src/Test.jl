@@ -18,12 +18,15 @@ module Test
 export @test, @test_throws, @test_broken, @test_skip,
     @test_warn, @test_nowarn,
     @test_logs, @test_deprecated
+
 export @testset
 # Legacy approximate testing functions, yet to be included
 export @inferred
 export detect_ambiguities, detect_unbound_args
 export GenericString, GenericSet, GenericDict, GenericArray
 export guardsrand
+
+using Random: srand, defaultRNG, AbstractRNG
 
 #-----------------------------------------------------------------------
 
@@ -1485,7 +1488,7 @@ Base.similar(A::GenericArray, s::Integer...) = GenericArray(similar(A.a, s...))
 
 "`guardsrand(f)` runs the function `f()` and then restores the
 state of the global RNG as it was before."
-function guardsrand(f::Function, r::AbstractRNG=Base.GLOBAL_RNG)
+function guardsrand(f::Function, r::AbstractRNG=defaultRNG())
     old = copy(r)
     try
         f()

@@ -2,6 +2,8 @@
 
 # Tests that do not really go anywhere else
 
+using Random
+
 # The following tests for deprecated functionality are disabled when --depwarn=error.
 # TODO: Clean this up by reimplementing depwarn=error with a logger.
 if Base.JLOptions().depwarn != 2
@@ -357,6 +359,7 @@ end
 
 # Issue 14173
 module Tmp14173
+    using Random
     export A
     A = randn(2000, 2000)
 end
