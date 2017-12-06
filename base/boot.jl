@@ -447,6 +447,7 @@ struct GeneratedFunctionStub
     spnames::Union{Void, Array{Any,1}}
     line::Int
     file::Symbol
+    expand_early::Bool
 end
 
 # invoke and wrap the results of @generated
