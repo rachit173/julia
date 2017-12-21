@@ -27,8 +27,6 @@ function Set(g::Generator)
     return Set{T}(g)
 end
 
-similar(s::Set{T}, ::Type{U}=T) where {T,U} = Set{U}()
-
 empty(s::Set{T}, ::Type{U}=T) where {T,U} = Set{U}()
 
 # return an empty set with eltype T, which is mutable (can be grown)
@@ -519,7 +517,7 @@ allunique(::Set) = true
 
 allunique(r::AbstractRange{T}) where {T} = (step(r) != zero(T)) || (length(r) <= 1)
 
-filter(pred, s::AbstractSet) = mapfilter(pred, push!, s, similar(s))
+filter(pred, s::AbstractSet) = mapfilter(pred, push!, s, emptymutable(s))
 filter!(f, s::Set) = unsafe_filter!(f, s)
 
 # it must be safe to delete the current element while iterating over s:
